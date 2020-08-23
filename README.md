@@ -15,9 +15,7 @@ In this tutorial we are going to learn how to use Spring Cloud Load Balancer for
     - Spring Cloud Load Balancer plays a role of Client side load balancer
     - Netflix Eureka Client is included in all the application servers (services)  and Gateway
 # Source Code 
-    git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-enhanced-routing.git
-# Source Code - Dynamic Routing
-    git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-registry.git
+    git clone https://github.com/balajich/reverse-proxy-spring-cloud-loadbalancer.git
 # Architecture
 # Prerequisite
 - JDK 1.8 or above
@@ -33,7 +31,6 @@ In this tutorial we are going to learn how to use Spring Cloud Load Balancer for
 - Access rest api via gateway:  curl http://localhost:8080/
 - Access rest api directly on instance1 : curl http://localhost:9090/
 - Access rest api directly on instance2 : curl http://localhost:9090/
-# Whats next?
-- Netflix component (Ribbon) is currently under maintenance mode user should move to Spring Cloud Loadbalancer
-- Currently, there are several applications using Netflix Ribbon for Dynamic Routing that the reason this tutorial explaining routing using Ribbon
-- Note Netflix eureka is not in maintenance  mode    
+# Hints
+-  If you are using Netflix ribbon for client side loading balancing set the property ** spring.cloud.loadbalancer.ribbon.enabled=false** than Spring Cloud Load Balancer will be used as ribbon automatically
+- Note only netflix ribbon is in maintainence mode , Please continue to use Eureka as registry
