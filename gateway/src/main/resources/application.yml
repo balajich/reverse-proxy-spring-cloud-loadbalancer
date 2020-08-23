@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: restapi
+          uri: lb://restapi
+          predicates:
+            - Path=/**
+server:
+  port: 8080
+  ribbon:
+    ServerListRefreshInterval: 1000
