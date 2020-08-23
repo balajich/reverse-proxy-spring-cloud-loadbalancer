@@ -1,2 +1,39 @@
-# reverse-proxy-spring-cloud-loadbalancer
-reverse-proxy-spring-cloud-loadbalancer
+# Spring Cloud Gateway -Reverse proxy with Spring Cloud Load Balancer
+In this tutorial we are going to learn how to use Spring Cloud Load Balancer for client side load balancing as Netflix ribbon in maintenance mode  
+
+- Overview
+    - Gateway runs on port 8080
+    - Requests on 8080 are reverse proxied (forwarded) to  rest api running on 9090 and 9091
+    - Eureka Registry Server is running on port 8761
+    - When Gateways starts up on port 8080 registers with Eureka Registry
+    - When rest api servers starts on 9090 and 9091 register with Eureak Server
+    - Spring Cloud gateway uses Spring Cloud Load Balancer and routes all the requests that are coming on 8080 in a round robin fashion to 9090 and 9091
+    - When are new rest api instance starts on 9092 it registers with Eureka and routing is dynamically enabled by Gateway 
+    - New application servers can be dynamically added
+    - Application servers (service urls) are maintained in Registry
+    - Netflix Eureka component plays a role of registry
+    - Spring Cloud Load Balancer plays a role of Client side load balancer
+    - Netflix Eureka Client is included in all the application servers (services)  and Gateway
+# Source Code 
+    git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-enhanced-routing.git
+# Source Code - Dynamic Routing
+    git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-registry.git
+# Architecture
+# Prerequisite
+- JDK 1.8 or above
+- Apache Maven 3.6.3 or above
+# Clean and Build
+    mvn clean install
+# Running components
+- Registry: java -jar .\registry\target\registry-0.0.1-SNAPSHOT.jar
+- Gateway:  java -jar .\gateway\target\gateway-0.0.1-SNAPSHOT.jar
+- Rest API instance 1: java -jar .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
+- Rest API instance 2:  java -jar '-Dserver.port=9091' .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
+# Using curl to test environment
+- Access rest api via gateway:  curl http://localhost:8080/
+- Access rest api directly on instance1 : curl http://localhost:9090/
+- Access rest api directly on instance2 : curl http://localhost:9090/
+# Whats next?
+- Netflix component (Ribbon) is currently under maintenance mode user should move to Spring Cloud Loadbalancer
+- Currently, there are several applications using Netflix Ribbon for Dynamic Routing that the reason this tutorial explaining routing using Ribbon
+- Note Netflix eureka is not in maintenance  mode    
