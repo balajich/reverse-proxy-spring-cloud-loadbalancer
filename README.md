@@ -21,7 +21,10 @@ Every application (Gateway,restapi) registers it availability with Eureak regist
     - Netflix Eureka Client is included in all the application servers (services)  and Gateway
 # Source Code 
     git clone https://github.com/balajich/reverse-proxy-spring-cloud-loadbalancer.git
+# Video
+[![Spring Cloud LoadBalancer](https://img.youtube.com/vi/PevbdsI3_o0/0.jpg)](https://www.youtube.com/watch?v=PevbdsI3_o0)
 # Architecture
+![architecture](architecture.png "architecture")
 # Prerequisite
 - JDK 1.8 or above
 - Apache Maven 3.6.3 or above
