@@ -1,12 +1,17 @@
-# Spring Cloud Gateway -Reverse proxy with Spring Cloud Load Balancer
-In this tutorial we are going to learn how to use Spring Cloud Load Balancer for client side load balancing as Netflix ribbon in maintenance mode  
+# Spring Cloud LoadBalancer
+In this tutorial we are going to learn how to use Spring Cloud Load Balancer for client side load balancing instead of Netflix ribbon . 
+As we are aware Netflix ribbon component is under maintainence mode we need to migrate to Spring Cloud Loadbalaner.
 
-- Overview
-    - Gateway runs on port 8080
+Requests from clients are received to Spring Cloud Gateway Component running on port 8080 , Spring Cloud Load Balancer component based on the routes 
+mentioned it forwards the requests to rest api servers. Spring Cloud Load Balancer is going to fetch restapi instances information from Eureka Registry.
+Every application (Gateway,restapi) registers it availability with Eureak registry.
+
+- Steps
+    - Gateway (Netty) runs on port 8080
     - Requests on 8080 are reverse proxied (forwarded) to  rest api running on 9090 and 9091
     - Eureka Registry Server is running on port 8761
-    - When Gateways starts up on port 8080 registers with Eureka Registry
-    - When rest api servers starts on 9090 and 9091 register with Eureak Server
+    - When Gateways starts up on port 8080 registers with Eureka Server
+    - When rest api servers starts on 9090 and 9091 registers with Eureka Server
     - Spring Cloud gateway uses Spring Cloud Load Balancer and routes all the requests that are coming on 8080 in a round robin fashion to 9090 and 9091
     - When are new rest api instance starts on 9092 it registers with Eureka and routing is dynamically enabled by Gateway 
     - New application servers can be dynamically added
